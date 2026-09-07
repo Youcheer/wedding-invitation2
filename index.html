@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wameesha & Suraj | Wedding Invitation</title>
+<meta name="description" content="Wameesha & Suraj, January 28, 2027, The Grand Walawwa, Kegalle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#e85b84;
+  --rose2:#f28aa4;
+  --coral:#f07f5b;
+  --peach:#f4b37f;
+  --gold:#bf8a33;
+  --ink:#33272b;
+  --muted:#7a6670;
+  --cream:#fbf7f3;
+  --paper:#fffdfb;
+  --line:rgba(90,55,66,.13);
+  --shadow:0 20px 60px rgba(74,40,52,.12);
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+body:not(.entered) > :not(#intro){opacity:0;visibility:hidden;pointer-events:none;transition:opacity 1s ease, visibility 1s ease}
+body.entered > :not(#intro){opacity:1;visibility:visible;transition:opacity 1s ease, visibility 1s ease}
+body.locked{overflow:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font:inherit}
+.container{width:min(1180px,92vw);margin:0 auto}
+.display{font-family:"Cormorant Garamond",serif}
+.script{font-family:"Great Vibes",cursive}
+.kicker{letter-spacing:.34em;text-transform:uppercase;font-size:.68rem;color:var(--gold);font-weight:700}
+.gold-line{width:84px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:18px auto 28px}
+.section{position:relative;padding:100px 0}
+.section.light{background:var(--paper)}
+.section.soft{background:linear-gradient(180deg,#fff9f6,#fdf2ef)}
+.section-title{font-size:clamp(2.7rem,5vw,4.5rem);line-height:.95;margin:0 0 12px;font-weight:500}
+.section-copy{max-width:620px;margin:0 auto;color:var(--muted);font-size:1rem;line-height:1.9}
+.flower-corner{position:absolute;pointer-events:none;opacity:.92;z-index:0}
+.flower-corner.left{left:-140px;top:-10px;width:380px}
+.flower-corner.right{right:-140px;top:-10px;width:380px;transform:scaleX(-1)}
+.section > .container{position:relative;z-index:2}
+
+/* Intro / opening film */
+.intro{position:fixed;inset:0;background:#1e161b;z-index:1000;display:grid;place-items:center;opacity:1;visibility:visible;transition:opacity 1.15s ease,visibility 1.15s ease,background 2s linear}
+.intro.fade-to-site{background:transparent}
+.intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-card{position:relative;width:min(540px,100vw);height:100%;overflow:hidden;background:#1e161b url("assets/intro-poster.jpg") center/cover no-repeat;transform:scale(1);opacity:1;transition:transform 1.35s cubic-bezier(.22,.61,.36,1),opacity 1.1s ease,filter 1.1s ease,background 2s linear}
+.intro.fade-to-site .intro-card{background:transparent}
+.intro.exit .intro-card{transform:scale(1.08);opacity:0;filter:blur(5px)}
+.intro-video{background:transparent;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;visibility:visible;transition:opacity .55s ease,visibility .55s ease}
+.intro-card.playing .intro-video{opacity:1;visibility:visible}
+.intro-card.fade-out-video .intro-video{opacity:0;transition:opacity 2s linear}
+.intro-card.fade-out-video .intro-shade{opacity:0;transition:opacity 2s linear}
+.intro-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,14,18,.16),rgba(21,14,18,.44));transition:opacity .55s ease}
+.intro-card.playing .intro-shade{opacity:0}
+.intro-content{position:absolute;inset:0;display:grid;place-items:center;z-index:3;transition:opacity .45s ease,transform .55s ease}
+.intro-card.playing .intro-content{opacity:0;transform:scale(1.04);pointer-events:none}
+.open-btn{border:1px solid rgba(255,255,255,.68);background:rgba(255,255,255,.12);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;border-radius:999px;padding:15px 28px;letter-spacing:.22em;text-transform:uppercase;font-size:.7rem;cursor:pointer;transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
+.open-btn:hover{transform:translateY(-2px) scale(1.02);background:rgba(255,255,255,.19);box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.open-btn:focus-visible{outline:2px solid #fff;outline-offset:4px}
+.intro-skip{position:absolute;top:24px;right:22px;z-index:10;border:1px solid rgba(255,255,255,.55);background:rgba(25,17,22,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;border-radius:999px;padding:8px 13px;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .35s ease,visibility .35s ease,transform .35s ease,background .25s ease}
+.intro-card.playing .intro-skip{opacity:1;visibility:visible;transform:translateY(0)}
+.intro-skip:hover{background:rgba(255,255,255,.18)}
+.intro-skip:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* Invitation loading state */
+.intro-loader{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:8px;text-align:center;z-index:8;color:#fff;background:rgba(31,22,27,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease}
+.intro-loader.active{opacity:1;visibility:visible}
+.loader-ring{width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,.28);border-top-color:#f5c7d5;border-right-color:#e8a0b5;animation:loaderSpin 1s linear infinite;box-shadow:0 0 0 7px rgba(255,255,255,.05)}
+.loader-flower{position:absolute;font-family:Georgia,serif;font-size:25px;color:#f6c4d1;animation:loaderPulse 1.5s ease-in-out infinite}
+.loader-title{margin-top:5px;font-family:"Cormorant Garamond",serif;font-size:1.25rem;letter-spacing:.08em}
+.loader-subtitle{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.78}
+@keyframes loaderSpin{to{transform:rotate(360deg)}}
+@keyframes loaderPulse{0%,100%{transform:scale(.88);opacity:.65}50%{transform:scale(1.08);opacity:1}}
+.intro-card.loading .intro-content{opacity:0;pointer-events:none}
+.intro-card.loading .intro-loader{opacity:1;visibility:visible}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:16px 0;transition:.35s}
+.nav.scrolled{background:rgba(255,252,249,.92);backdrop-filter:blur(14px);box-shadow:0 5px 25px rgba(50,35,40,.06)}
+.nav-row{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-monogram{font-family:"Cormorant Garamond";font-size:2rem;color:#fff}
+.nav.scrolled .brand-monogram{color:var(--gold)}
+.nav-links{display:flex;gap:28px;align-items:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.9)}
+.nav.scrolled .nav-links{color:var(--ink)}
+.nav-links a{opacity:.9}
+.nav-links a:hover{opacity:1;color:var(--rose)}
+.music{border:1px solid rgba(255,255,255,.5);color:#fff;background:rgba(255,255,255,.08);padding:9px 13px;border-radius:999px;font-size:.72rem;cursor:pointer}
+.nav.scrolled .music{border-color:var(--line);color:var(--ink);background:#fffaf7}
+.mobile-menu{display:none}
+
+/* Hero */
+.hero{min-height:100vh;position:relative;display:grid;align-items:center;overflow:hidden;background:#2f2327}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.03) brightness(.58)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,18,22,.16),rgba(34,22,27,.66))}
+.hero-content{position:relative;z-index:2;text-align:center;color:white;padding:130px 0 100px}
+.hero-monogram{font-family:"Cormorant Garamond";font-size:clamp(5rem,12vw,10rem);line-height:.75;color:#f7d59a;letter-spacing:-.04em}
+.hero-overline{margin-top:22px;letter-spacing:.42em;font-size:.64rem;text-transform:uppercase;color:#f8e8d7}
+.hero-title{font-family:"Cormorant Garamond";font-size:clamp(3.7rem,7vw,7rem);line-height:.9;margin:14px 0 8px;font-weight:500}
+.hero-title span{font-family:"Great Vibes";font-size:.76em;color:#f17799}
+.hero-sub{letter-spacing:.26em;text-transform:uppercase;font-size:.73rem}
+.hero-details{display:flex;justify-content:center;gap:26px;align-items:center;margin:30px 0}
+.hero-detail{padding:0 18px}
+.hero-detail small{display:block;color:#e8d3c9;letter-spacing:.22em;font-size:.6rem;text-transform:uppercase}
+.hero-detail strong{display:block;font-family:"Cormorant Garamond";font-size:1.35rem;margin-top:4px}
+.hero-divider{width:1px;height:36px;background:rgba(255,255,255,.45)}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.65);color:white;letter-spacing:.18em;text-transform:uppercase;font-size:.7rem;background:rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.scroll-cue{display:block;margin-top:50px;color:#fff;opacity:.85;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase}
+
+/* Petals */
+.petal{position:fixed;top:-80px;width:22px;pointer-events:none;z-index:50;opacity:.75;animation:fall linear forwards}
+@keyframes fall{0%{transform:translate3d(0,-100px,0) rotate(0)}100%{transform:translate3d(var(--drift),110vh,0) rotate(720deg)}}
+
+/* Story */
+.story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;margin-top:56px}
+.story-photo{position:relative}
+.story-photo img{width:100%;height:620px;object-fit:cover;border-radius:240px 240px 24px 24px;box-shadow:var(--shadow)}
+.story-photo::after{content:"";position:absolute;inset:22px -18px -18px 18px;border:1px solid var(--gold);border-radius:240px 240px 24px 24px;z-index:-1}
+.story-text h3{font-family:"Cormorant Garamond";font-weight:500;font-size:3rem;margin:8px 0 16px}
+.story-text p{color:var(--muted);line-height:1.95}
+.story-quote{font-family:"Great Vibes";font-size:2.4rem;color:var(--rose);margin:20px 0}
+
+/* Timeline */
+.timeline{margin-top:42px;display:grid;gap:18px}
+.timeline-item{display:grid;grid-template-columns:110px 1fr;gap:20px;align-items:start}
+.year{font-family:"Cormorant Garamond";font-size:2rem;color:var(--rose);padding-top:2px}
+.timeline-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px 22px;box-shadow:0 10px 28px rgba(80,50,60,.05)}
+.timeline-card h4{font-family:"Cormorant Garamond";font-size:1.6rem;margin:0 0 4px}
+.timeline-card p{margin:0;color:var(--muted);line-height:1.7}
+
+/* Details */
+.details-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:52px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.detail-panel{padding:40px 34px}
+.detail-panel + .detail-panel{border-left:1px solid var(--line)}
+.detail-panel h3{font-family:"Cormorant Garamond";font-size:2rem;margin:4px 0 12px}
+.detail-list{display:grid;gap:16px}
+.detail-row{display:flex;gap:14px}
+.icon{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#fff2f5;color:var(--rose);border:1px solid rgba(232,91,132,.18);flex:0 0 auto}
+.detail-row strong{display:block}
+.detail-row span{color:var(--muted);font-size:.92rem}
+.save-btn{margin-top:26px;display:inline-flex;gap:8px;padding:11px 18px;border:1px solid var(--gold);border-radius:999px;color:var(--ink);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
+
+/* Countdown */
+.countdown{margin-top:50px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.time{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:22px;padding:22px;text-align:center}
+.time strong{font-family:"Cormorant Garamond";font-size:3rem;line-height:1}
+.time span{display:block;margin-top:6px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-size:.64rem}
+
+/* Venue */
+.venue{background:#1f191a;color:white;overflow:hidden}
+.venue-grid{display:grid;grid-template-columns:.95fr 1.05fr;min-height:580px}
+.venue-photo{min-height:580px;background:url('assets/venue.jpg') center/cover}
+.venue-copy{padding:80px 7vw;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#2a1f22,#171314)}
+.venue-copy .kicker{color:#f2c88c}
+.venue-copy h2{font-family:"Cormorant Garamond";font-size:4rem;line-height:.9;margin:10px 0 20px;font-weight:500}
+.venue-copy p{color:#dbc9c6;line-height:1.9;max-width:520px}
+.location-btn{align-self:flex-start;margin-top:25px;border:1px solid rgba(255,255,255,.4);padding:12px 18px;border-radius:999px;color:#fff;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:180px;gap:12px;margin-top:48px}
+.gallery-grid img{width:100%;height:100%;object-fit:cover;border-radius:20px}
+.g1{grid-column:span 5;grid-row:span 2}
+.g2{grid-column:span 4}
+.g3{grid-column:span 3}
+.g4{grid-column:span 3}
+.g5{grid-column:span 4}
+.g6{grid-column:span 5}
+
+/* Location map */
+.map-section{background:#fffaf7;padding:0 0 100px}
+.map-wrap{width:min(1180px,92vw);margin:0 auto;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
+.map-frame{width:100%;height:430px;border:0;display:block;filter:saturate(.88) contrast(.98)}
+.map-caption{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 26px}
+.map-caption strong{font-family:"Cormorant Garamond";font-size:1.7rem;font-weight:600}
+.map-caption span{display:block;color:var(--muted);font-size:.9rem;margin-top:3px}
+@media (max-width:640px){.map-frame{height:330px}.map-caption{align-items:flex-start;flex-direction:column}}
+
+/* RSVP */
+.rsvp-box{max-width:720px;margin:52px auto 0;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:32px;padding:46px}
+.form-grid{display:grid;gap:15px}
+label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{width:100%;margin-top:7px;padding:13px 14px;border:1px solid rgba(90,55,66,.18);border-radius:14px;background:#fffdfa;color:var(--ink);font:inherit;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(232,91,132,.1)}
+.rsvp-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.attendance{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px}
+.choice{flex:1;min-width:180px}
+.choice input{display:none}
+.choice span{display:block;padding:13px 14px;border:1px solid var(--line);border-radius:14px;text-align:center;cursor:pointer;color:var(--muted)}
+.choice input:checked + span{background:#fff0f4;border-color:var(--rose);color:#9b3c5b}
+.submit{border:none;background:linear-gradient(135deg,var(--rose),#d84e7c);color:white;padding:14px 20px;border-radius:999px;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;cursor:pointer;margin-top:5px}
+.success{display:none;margin-top:14px;background:#eef9ef;border:1px solid #b7dcb9;color:#3e6a41;border-radius:14px;padding:12px}
+.success.show{display:block}
+
+/* Footer */
+.footer{position:relative;background:#2a2023;color:#f8eee9;padding:70px 0 36px;overflow:hidden}
+.footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:40px}
+.footer h3{font-family:"Great Vibes";color:#f18ba4;font-size:2.6rem;margin:0 0 8px}
+.footer p{color:#cbbfc1;line-height:1.8}
+.footer-links{display:grid;gap:8px;font-size:.8rem;color:#e8dddd}
+.footer-bottom{margin-top:50px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:.7rem;color:#bdaeb1;letter-spacing:.08em}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:.8s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Responsive */
+@media (max-width:900px){
+  .nav-links.mobile-open{display:flex;position:absolute;top:58px;right:16px;padding:16px;flex-direction:column;align-items:stretch;min-width:190px;background:rgba(255,252,249,.98);color:var(--ink);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(50,35,40,.14)}
+  .nav-links.mobile-open a,.nav-links.mobile-open .music{color:var(--ink)}
+  .nav-links{display:none}.mobile-menu{display:block;color:#fff;border:0;background:transparent;font-size:1.2rem}.nav.scrolled .mobile-menu{color:var(--ink)}
+  .story-grid,.venue-grid,.details-wrap,.footer-grid{grid-template-columns:1fr}
+  .detail-panel + .detail-panel{border-left:0;border-top:1px solid var(--line)}
+  .venue-photo{min-height:380px}.venue-copy{padding:58px 6vw}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}.g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 1;grid-row:span 1}
+  .g1{grid-row:span 2}
+}
+@media (max-width:640px){
+  .section{padding:76px 0}
+  .hero-details{gap:8px}.hero-detail{padding:0 8px}.hero-divider{height:28px}
+  .hero-detail strong{font-size:1.05rem}.hero-detail small{font-size:.52rem}
+  .story-photo img{height:480px}.timeline-item{grid-template-columns:80px 1fr}.year{font-size:1.5rem}
+  .countdown{grid-template-columns:repeat(2,1fr)}
+  .rsvp-box{padding:28px}.rsvp-row{grid-template-columns:1fr}
+  .flower-corner.left,.flower-corner.right{width:260px}
+  .footer-bottom{flex-direction:column;gap:8px}
+}
+
+/* Mobile-safe layout overrides */
+@media (max-width: 640px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  .container{width:100%;padding-left:20px;padding-right:20px}
+  .section{padding:72px 0;overflow:hidden}
+  .section-title{font-size:clamp(2.35rem,11vw,3.35rem);line-height:.98;max-width:100%;position:relative;z-index:4}
+  .section-copy{font-size:.94rem;line-height:1.75;max-width:100%;position:relative;z-index:4}
+  .kicker{font-size:.59rem;letter-spacing:.28em;position:relative;z-index:4}
+  .gold-line{margin:15px auto 22px}
+  .flower-corner{width:190px!important;opacity:.72;z-index:1;top:-18px!important}
+  .flower-corner.left{left:-125px!important}
+  .flower-corner.right{right:-125px!important}
+  .story-grid{gap:34px;margin-top:34px}
+  .story-photo img{height:420px;border-radius:190px 190px 20px 20px}
+  .story-photo::after{inset:14px -10px -12px 10px;border-radius:190px 190px 20px 20px}
+  .story-text{position:relative;z-index:4}
+  .story-text h3{font-size:2.35rem;line-height:1}
+  .story-quote{font-size:2rem;line-height:1.15}
+  .timeline{gap:12px}
+  .timeline-item{grid-template-columns:58px minmax(0,1fr);gap:10px}
+  .timeline-card{padding:15px 14px;border-radius:14px}
+  .timeline-card h4{font-size:1.35rem}
+  .timeline-card p{font-size:.86rem}
+  .year{font-size:1.25rem}
+  .details-wrap{margin-top:36px}
+  .detail-panel{padding:28px 20px}
+  .detail-panel h3{font-size:1.8rem}
+  .countdown{gap:9px;margin-top:34px}
+  .time{padding:17px 8px;border-radius:17px}
+  .time strong{font-size:2.35rem}
+  .venue-grid{min-height:0}
+  .venue-photo{min-height:330px}
+  .venue-copy{padding:54px 20px}
+  .venue-copy h2{font-size:3rem}
+  .gallery-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:10px;margin-top:34px;position:relative;z-index:4}
+  .gallery-grid img{height:230px;min-width:0;border-radius:16px}
+  .gallery-grid .g1{height:330px;grid-row:span 1}
+  .gallery-grid .g2,.gallery-grid .g3,.gallery-grid .g4,.gallery-grid .g5,.gallery-grid .g6{grid-column:span 1;grid-row:span 1}
+  .map-section{padding-bottom:72px}
+  .map-wrap{width:calc(100% - 40px);border-radius:20px}
+  .map-frame{height:300px}
+  .map-caption{padding:18px;gap:14px}
+  .map-caption strong{font-size:1.45rem}
+  .rsvp-box{padding:24px 18px;border-radius:22px}
+  .footer{padding:58px 0 30px}
+  .footer-grid{gap:25px}
+  .footer-bottom{margin-top:35px}
+  .intro-card{width:100vw;max-width:none}
+  .intro-video{object-fit:cover;object-position:center center}
+  .open-btn{padding:14px 24px;font-size:.66rem;letter-spacing:.19em}
+  .intro-loader{padding:20px}
+  .loader-title{font-size:1.08rem}
+  .loader-subtitle{font-size:.55rem}
+}
+@media (max-width: 390px){
+  .container{padding-left:16px;padding-right:16px}
+  .flower-corner{width:165px!important}
+  .flower-corner.left{left:-112px!important}
+  .flower-corner.right{right:-112px!important}
+  .section-title{font-size:2.25rem}
+  .gallery-grid{gap:8px}
+  .gallery-grid img{height:205px}
+  .gallery-grid .g1{height:290px}
+  .map-wrap{width:calc(100% - 32px)}
+}
+
+</style>
+</head>
+<body class="locked">
+<!-- Invitation opening film -->
+<div class="intro" id="intro" aria-label="Wedding invitation opening">
+  <div class="intro-card" id="introCard">
+    <video class="intro-video" id="introVideo" preload="auto" playsinline webkit-playsinline muted poster="assets/intro-poster.jpg">
+      <source src="assets/intro-opening.mp4" type="video/mp4">
+    </video>
+    <div class="intro-shade"></div>
+    <div class="intro-loader" id="introLoader" aria-live="polite" aria-hidden="true">
+      <div class="loader-flower">✿</div>
+      <div class="loader-ring"></div>
+      <div class="loader-title">Preparing your invitation</div>
+      <div class="loader-subtitle">Please wait a moment</div>
+    </div>
+    <div class="intro-content">
+      <button class="open-btn" id="open" type="button">Open Invitation</button>
+    </div>
+    <button class="intro-skip" id="introSkip" type="button" aria-label="Skip opening video">Skip</button>
+  </div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="container nav-row">
+    <a class="brand" href="#home"><div class="brand-monogram">W&amp;S</div></a>
+    <div class="nav-links">
+      <a href="#story">Our Story</a>
+      <a href="#details">Details</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#location">Location</a>
+      <a href="#rsvp">RSVP</a>
+      <button class="music" id="musicBtn">♫ Play Music</button>
+    </div>
+    <button class="mobile-menu" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <img class="hero-bg" src="assets/hero.jpg" alt="">
+  <div class="hero-content container">
+    <div class="hero-monogram">W<span style="font-family:Great Vibes;font-size:.62em">&amp;</span>S</div>
+    <div class="hero-overline">Together with their families</div>
+    <h1 class="hero-title">Wameesha <span>&amp;</span> Suraj</h1>
+    <div class="hero-sub">Invite you to celebrate their wedding</div>
+    <div class="hero-details">
+      <div class="hero-detail"><small>Date</small><strong>January 28, 2027</strong></div>
+      <div class="hero-divider"></div>
+      <div class="hero-detail"><small>Venue</small><strong>The Grand Walawwa, Kegalle</strong></div>
+    </div>
+    <a class="hero-cta" href="#details">View the details ↓</a>
+    <div class="scroll-cue">Scroll to explore</div>
+  </div>
+</header>
+
+<section class="section light" id="story">
+  <img class="flower-corner left" src="assets/floral-paper.png" alt="">
+  <img class="flower-corner right" src="assets/floral-paper.png" alt="">
+  <div class="container">
+    <div class="kicker reveal">Our story</div>
+    <h2 class="section-title display reveal">Two hearts, one journey</h2>
+    <div class="gold-line reveal"></div>
+    <p class="section-copy reveal">A beautiful chapter written with friendship, laughter, and a thousand little moments. Now we are ready to begin the next chapter surrounded by everyone we love.</p>
+    <div class="story-grid">
+      <div class="story-photo reveal"><img src="assets/hero-vertical.png" alt="Romantic wedding table with flowers"></div>
+      <div class="story-text">
+        <div class="kicker">The beginning</div>
+        <h3>From hello to forever</h3>
+        <p>Our journey started with a simple hello and grew into something we could not imagine living without. Through every season, we found more reasons to choose each other.</p>
+        <div class="story-quote">“And suddenly, all the love songs were about us.”</div>
+        <div class="timeline">
+          <div class="timeline-item reveal"><div class="year">2019</div><div class="timeline-card"><h4>First Met</h4><p>A first conversation that quietly started everything.</p></div></div>
+          <div class="timeline-item reveal"><div class="year">2022</div><div class="timeline-card"><h4>The Adventure</h4><p>Shared journeys, late-night talks, and countless memories.</p></div></div>
+          <div class="timeline-item reveal"><div class="year">2026</div><div class="timeline-card"><h4>The Proposal</h4><p>A question, an easy yes, and a promise for forever.</p></div></div>
+          <div class="timeline-item reveal"><div class="year">2027</div><div class="timeline-card"><h4>Forever Begins</h4><p>And now, with our favourite people around us, we say I do.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="details">
+  <div class="container">
+    <div class="kicker reveal">The big day</div>
+    <h2 class="section-title display reveal">Wedding details</h2>
+    <div class="gold-line reveal"></div>
+    <p class="section-copy reveal">Everything you need to know for our special day.</p>
+    <div class="details-wrap reveal">
+      <div class="detail-panel">
+        <div class="kicker">Ceremony</div>
+        <h3>Wedding Ceremony</h3>
+        <div class="detail-list">
+          <div class="detail-row"><div class="icon">◷</div><div><strong>Thursday, January 28, 2027</strong><span>Ceremony begins at 9:30 AM</span></div></div>
+          <div class="detail-row"><div class="icon">⌖</div><div><strong>The Grand Walawwa</strong><span>Main ballroom and heritage gardens, Kegalle</span></div></div>
+          <div class="detail-row"><div class="icon">♕</div><div><strong>Dress</strong><span>Garden formal or elegant traditional attire</span></div></div>
+        </div>
+        <a class="save-btn" href="#rsvp">Save our date →</a>
+      </div>
+      <div class="detail-panel">
+        <div class="kicker">Reception</div>
+        <h3>An evening to celebrate</h3>
+        <div class="detail-list">
+          <div class="detail-row"><div class="icon">◷</div><div><strong>Reception at 7:00 PM</strong><span>Dinner, music, and dancing with our favourite people</span></div></div>
+          <div class="detail-row"><div class="icon">♡</div><div><strong>Food &amp; drinks</strong><span>Good food, warm conversations, and a few happy tears</span></div></div>
+          <div class="detail-row"><div class="icon">✦</div><div><strong>RSVP by</strong><span>Please reply before January 5, 2027</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="countdown" aria-label="Countdown to wedding">
+      <div class="time"><strong id="days">--</strong><span>Days</span></div>
+      <div class="time"><strong id="hours">--</strong><span>Hours</span></div>
+      <div class="time"><strong id="minutes">--</strong><span>Minutes</span></div>
+      <div class="time"><strong id="seconds">--</strong><span>Seconds</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="venue" id="location">
+  <div class="venue-grid">
+    <div class="venue-photo"></div>
+    <div class="venue-copy">
+      <div class="kicker">The venue</div>
+      <h2>The Grand Walawwa</h2>
+      <p>A timeless setting in Kegalle for a beautiful beginning. Surrounded by heritage character, warm lights, flowers, and an evening atmosphere designed for celebrating together.</p>
+      <a class="location-btn" href="https://maps.google.com/?q=The+Grand+Walawwa+Kegalle" target="_blank" rel="noopener">Open location ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="map-section" aria-label="Wedding location map">
+  <div class="map-wrap">
+    <iframe class="map-frame" title="Map to The Grand Walawwa, Kegalle" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=The%20Grand%20Walawwa%20Kegalle&output=embed"></iframe>
+    <div class="map-caption">
+      <div><strong>The Grand Walawwa</strong><span>Kegalle, Sri Lanka</span></div>
+      <a class="location-btn" style="margin-top:0;background:#2a2023" href="https://www.google.com/maps/search/?api=1&query=The+Grand+Walawwa+Kegalle" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="section light" id="gallery">
+  <img class="flower-corner left" src="assets/floral-paper.png" alt="">
+  <img class="flower-corner right" src="assets/floral-paper.png" alt="">
+  <div class="container">
+    <div class="kicker reveal">Our precious moments</div>
+    <h2 class="section-title display reveal">Moments of us</h2>
+    <div class="gold-line reveal"></div>
+    <p class="section-copy reveal">A little preview of the flowers, lights, details, and atmosphere we love.</p>
+    <div class="gallery-grid">
+      <img class="g1 reveal" src="assets/table.jpg" alt="Wedding table decor">
+      <img class="g2 reveal" src="assets/floral-arch.png" alt="Floral decoration">
+      <img class="g3 reveal" src="assets/hero-vertical.png" alt="Wedding ambience">
+      <img class="g4 reveal" src="assets/rose-1.png" alt="Rose petal">
+      <img class="g5 reveal" src="assets/venue.jpg" alt="Venue">
+      <img class="g6 reveal" src="assets/floral-header.png" alt="Floral detail">
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="rsvp">
+  <div class="container">
+    <div class="kicker reveal">Kindly reply</div>
+    <h2 class="section-title display reveal">Will you join us?</h2>
+    <div class="gold-line reveal"></div>
+    <p class="section-copy reveal">Your presence is the greatest gift. Please let us know if you will be celebrating with us.</p>
+    <div class="rsvp-box reveal">
+      <form id="rsvpForm" class="form-grid">
+        <div>
+          <label for="name">Full name</label>
+          <input id="name" required placeholder="Your full name">
+        </div>
+        <div>
+          <label>Will you attend?</label>
+          <div class="attendance">
+            <label class="choice"><input type="radio" name="attendance" value="yes" checked><span>Joyfully accepts</span></label>
+            <label class="choice"><input type="radio" name="attendance" value="no"><span>Regretfully declines</span></label>
+          </div>
+        </div>
+        <div class="rsvp-row">
+          <div>
+            <label for="guests">Number of guests</label>
+            <select id="guests"><option>1</option><option>2</option><option>3</option><option>4</option></select>
+          </div>
+          <div>
+            <label for="contact">Contact</label>
+            <input id="contact" placeholder="Phone or email">
+          </div>
+        </div>
+        <div>
+          <label for="note">Notes</label>
+          <textarea id="note" rows="4" placeholder="Dietary notes or a warm wish for Wameesha & Suraj"></textarea>
+        </div>
+        <button class="submit" type="submit">Send our RSVP</button>
+        <div class="success" id="success">Thank you. Your RSVP has been recorded on this preview page.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Wameesha &amp; Suraj</h3>
+        <p>Sealed with love. A day to remember, a lifetime to celebrate.</p>
+      </div>
+      <div>
+        <div class="kicker">Wedding</div>
+        <p>28 January 2027<br>The Grand Walawwa, Kegalle</p>
+      </div>
+      <div>
+        <div class="kicker">Explore</div>
+        <div class="footer-links">
+          <a href="#story">Our Story</a>
+          <a href="#details">Details</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#rsvp">RSVP</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>W &amp; S · 2027</span><span>With love, Wameesha &amp; Suraj</span></div>
+  </div>
+</footer>
+
+<audio id="audio" loop preload="auto"><source src="assets/wedding-music.mp3" type="audio/mpeg"></audio>
+
+<script>
+const body=document.body;
+const intro=document.getElementById('intro');
+const introCard=document.getElementById('introCard');
+const introVideo=document.getElementById('introVideo');
+const openBtn=document.getElementById('open');
+const skipBtn=document.getElementById('introSkip');
+const audio=document.getElementById('audio');
+const musicBtn=document.getElementById('musicBtn');
+
+let invitationOpened=false;
+let finishing=false;
+let fadeStarted=false;
+let playRequested=false;
+const introLoader=document.getElementById('introLoader');
+
+function showIntroLoader(){
+  introCard.classList.add('loading');
+  introLoader?.setAttribute('aria-hidden','false');
+}
+function hideIntroLoader(){
+  introCard.classList.remove('loading');
+  introLoader?.setAttribute('aria-hidden','true');
+}
+
+async function playOpeningVideo(){
+  if(!playRequested || finishing) return;
+  introVideo.muted=true;
+  introVideo.defaultMuted=true;
+  introVideo.setAttribute('muted','');
+  introVideo.setAttribute('playsinline','');
+  introVideo.setAttribute('webkit-playsinline','');
+  introCard.classList.add('playing');
+  try{
+    if(introVideo.readyState < 2) introVideo.load();
+    await introVideo.play();
+  }catch(err){
+    console.warn('Intro video playback failed:', err);
+    hideIntroLoader();
+    introCard.classList.remove('playing');
+    openBtn.disabled=false;
+    invitationOpened=false;
+    playRequested=false;
+  }
+}
+
+async function startMusic(){
+  if(!audio) return;
+  try{
+    audio.volume=0.55;
+    await audio.play();
+    musicBtn && (musicBtn.textContent='♫ Music On');
+  }catch(err){
+    console.warn('Background music could not start:', err);
+  }
+}
+
+function enterInvitation(){
+  if(invitationOpened || finishing) return;
+  invitationOpened=true;
+  playRequested=true;
+  openBtn.disabled=true;
+  showIntroLoader();
+  startMusic();
+  playOpeningVideo();
+}
+
+function skipOpening(){
+  if(finishing) return;
+  finishInvitation();
+}
+
+function finishInvitation(){
+  if(finishing) return;
+  finishing=true;
+  introCard.classList.add('exit');
+  body.classList.add('entered');
+  window.scrollTo({top:0,left:0,behavior:'auto'});
+  window.setTimeout(()=>{
+    intro.classList.add('hide');
+    body.classList.remove('locked');
+    introVideo.pause();
+  },1100);
+}
+
+openBtn.addEventListener('click',enterInvitation);
+skipBtn?.addEventListener('click',skipOpening);
+introVideo.addEventListener('loadeddata',()=>{
+  if(playRequested) playOpeningVideo();
+});
+introVideo.addEventListener('canplay',()=>{
+  if(playRequested && introVideo.paused) playOpeningVideo();
+});
+introVideo.addEventListener('playing',()=>hideIntroLoader());
+introVideo.addEventListener('timeupdate',()=>{
+  if(!introVideo.duration || fadeStarted) return;
+  if(introVideo.currentTime >= introVideo.duration - 2){
+    fadeStarted=true;
+    introCard.classList.add('fade-out-video');
+    intro.classList.add('fade-to-site');
+    body.classList.add('entered');
+  }
+});
+introVideo.addEventListener('ended',finishInvitation);
+introVideo.addEventListener('error',()=>{
+  console.error('Intro video error', introVideo.error);
+  hideIntroLoader();
+  introCard.classList.remove('playing');
+  openBtn.disabled=false;
+  invitationOpened=false;
+  playRequested=false;
+});
+
+// Prime the poster immediately. This keeps the opening screen visual even while the MP4 loads.
+introVideo.load();
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30));
+
+if(musicBtn && audio){
+  musicBtn.addEventListener('click', async ()=>{
+    if(audio.paused){
+      try{ await audio.play(); musicBtn.textContent='♫ Music On'; }catch(e){}
+    }else{
+      audio.pause();
+      musicBtn.textContent='♫ Play Music';
+    }
+  });
+}
+
+const wedding = new Date('2027-01-28T09:30:00+05:30').getTime();
+function tick(){
+  const diff=Math.max(0,wedding-Date.now());
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  const s=Math.floor(diff/1000)%60;
+  days.textContent=String(d).padStart(3,'0');
+  hours.textContent=String(h).padStart(2,'0');
+  minutes.textContent=String(m).padStart(2,'0');
+  seconds.textContent=String(s).padStart(2,'0');
+}
+setInterval(tick,1000); tick();
+
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function makePetal(){
+  const p=document.createElement('img');
+  p.className='petal';
+  p.src=Math.random()>.5?'assets/rose-1.png':'assets/rose-2.png';
+  p.style.left=(Math.random()*100)+'vw';
+  p.style.width=(12+Math.random()*24)+'px';
+  p.style.setProperty('--drift',(-80+Math.random()*160)+'px');
+  p.style.animationDuration=(8+Math.random()*8)+'s';
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),18000);
+}
+setInterval(makePetal,750);
+
+document.getElementById('rsvpForm').addEventListener('submit',(e)=>{
+  e.preventDefault();
+  document.getElementById('success').classList.add('show');
+});
+document.querySelector('.mobile-menu').addEventListener('click',()=>{
+  document.querySelector('.nav-links').classList.toggle('mobile-open');
+});
+</script>
+</body>
+</html>
