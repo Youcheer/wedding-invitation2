@@ -118,7 +118,7 @@ body.intro-active{overflow:hidden}
   #intro{width:100vw;height:100dvh;min-height:100svh}
   .intro-stage{width:100vw;height:100dvh;min-height:100svh}
   .intro-card img{object-fit:cover}
-  #introVideo{object-fit:contain}
+  #introVideo{object-fit:cover}
   .intro-open{bottom:7%;min-width:210px}
   #musicToggle{right:14px;top:14px}
   .skip-video{bottom:max(16px,env(safe-area-inset-bottom))}
@@ -209,8 +209,7 @@ async function startInvitation(){
   introVideo.currentTime=0;
   introVideo.muted=true;
   try{ await introVideo.play(); }catch(e){}
-  // Keep the invitation in the browser on larger screens; only use fullscreen on phones.
-  try{ if(window.matchMedia('(max-width: 850px)').matches && document.fullscreenEnabled && !document.fullscreenElement) await intro.requestFullscreen(); }catch(e){}
+
   if(musicOn){
     try{ await music.play(); }catch(e){}
   }
