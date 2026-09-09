@@ -1057,6 +1057,56 @@
       gap: 22px;
     }
 
+    .guest-attendance-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .guest-attendance-card {
+      background: rgba(255, 244, 236, 0.72);
+      border: 1px solid rgba(176, 126, 105, 0.20);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .guest-attendance-name {
+      display: block;
+      font-weight: 700;
+      color: #5b3e3a;
+      margin-bottom: 11px;
+      font-size: 0.98rem;
+    }
+
+    .guest-attendance-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .guest-choice {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 12px;
+      border: 1px solid rgba(176, 126, 105, 0.18);
+      border-radius: 12px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+    }
+
+    .guest-choice input {
+      accent-color: #e8a12b;
+    }
+
+    @media (max-width: 580px) {
+      .guest-attendance-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .form-group {
       display: flex;
       flex-direction: column;
@@ -1619,7 +1669,7 @@
     }
     .page-floral img {
       position: absolute;
-      width: clamp(58px, 9vw, 125px);
+      width: clamp(42px, 5.2vw, 72px);
       height: auto;
       object-fit: contain;
       filter: drop-shadow(0 10px 16px rgba(74,38,50,.12));
@@ -1629,12 +1679,12 @@
     }
     .page-floral .f1 { left: -18px; top: 7%; }
     .page-floral .f2 { right: -16px; top: 14%; animation-delay: -1.4s; }
-    .page-floral .f3 { left: 2%; bottom: 10%; width: clamp(50px, 7vw, 100px); animation-delay: -2.5s; }
-    .page-floral .f4 { right: 1%; bottom: 8%; width: clamp(52px, 7.5vw, 105px); animation-delay: -3.6s; }
-    .page-floral .f5 { left: 15%; top: 42%; width: clamp(42px, 5.5vw, 82px); animation-delay: -4.3s; }
-    .page-floral .f6 { right: 14%; top: 48%; width: clamp(42px, 5.5vw, 82px); animation-delay: -5.1s; }
-    .page-floral .butterfly { width: clamp(58px, 7vw, 96px); left: 9%; top: 24%; animation: pageButterflyFloat 7s ease-in-out infinite; }
-    .page-floral .butterfly2 { width: clamp(52px, 6.5vw, 90px); right: 10%; bottom: 22%; animation: pageButterflyFloat2 8s ease-in-out infinite; animation-delay: -2.8s; }
+    .page-floral .f3 { left: 2%; bottom: 10%; width: clamp(38px, 4.4vw, 62px); animation-delay: -2.5s; }
+    .page-floral .f4 { right: 1%; bottom: 8%; width: clamp(40px, 4.7vw, 66px); animation-delay: -3.6s; }
+    .page-floral .f5 { left: 15%; top: 42%; width: clamp(34px, 4vw, 58px); animation-delay: -4.3s; }
+    .page-floral .f6 { right: 14%; top: 48%; width: clamp(34px, 4vw, 58px); animation-delay: -5.1s; }
+    .page-floral .butterfly { width: clamp(38px, 4.6vw, 62px); left: 9%; top: 24%; animation: pageButterflyFloat 7s ease-in-out infinite; }
+    .page-floral .butterfly2 { width: clamp(36px, 4.2vw, 58px); right: 10%; bottom: 22%; animation: pageButterflyFloat2 8s ease-in-out infinite; animation-delay: -2.8s; }
 
     @keyframes pageFlowerFloat {
       0%, 100% { transform: translate3d(0,0,0) rotate(-2deg); }
@@ -1678,17 +1728,17 @@
     }
     .hero-floral .hero-flower {
       position: absolute;
-      width: clamp(48px, 6.2vw, 88px);
+      width: clamp(38px, 4.8vw, 66px);
       height: auto;
       object-fit: contain;
       filter: drop-shadow(0 8px 14px rgba(74,38,50,.10));
-      opacity: .96;
+      opacity: .88;
       animation: heroFlowerFloat 7s ease-in-out infinite;
     }
     .hero-floral .hf1 { left: -18px; top: 19%; }
     .hero-floral .hf2 { right: -17px; top: 29%; animation-delay: -1.8s; }
-    .hero-floral .hf3 { left: -15px; bottom: 20%; width: clamp(44px, 5.4vw, 76px); animation-delay: -3.2s; }
-    .hero-floral .hf4 { right: -14px; bottom: 15%; width: clamp(44px, 5.3vw, 74px); animation-delay: -4.6s; }
+    .hero-floral .hf3 { left: -12px; bottom: 20%; width: clamp(34px, 4.1vw, 56px); animation-delay: -3.2s; }
+    .hero-floral .hf4 { right: -12px; bottom: 15%; width: clamp(34px, 4vw, 54px); animation-delay: -4.6s; }
     @keyframes heroFlowerFloat {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(1.5deg); }
@@ -1697,16 +1747,16 @@
       .hero-section {
         padding: 28px 0 40px;
       }
-      .hero-floral .f1 { left: -30px; top: 3%; width: 88px; }
-      .hero-floral .f2 { right: -30px; top: 5%; width: 92px; }
-      .hero-floral .f3 { left: -28px; bottom: 8%; width: 78px; }
-      .hero-floral .f4 { right: -28px; bottom: 6%; width: 82px; }
-      .hero-floral .hf1 { left: -14px; top: 24%; width: 54px; }
-      .hero-floral .hf2 { right: -14px; top: 34%; width: 56px; }
-      .hero-floral .hf3 { left: -12px; bottom: 27%; width: 50px; }
-      .hero-floral .hf4 { right: -12px; bottom: 23%; width: 48px; }
-      .hero-floral .butterfly { display: block; left: 7%; top: 17%; width: 42px; }
-      .hero-floral .butterfly2 { display: block; right: 7%; bottom: 17%; width: 42px; }
+      .hero-floral .f1 { left: -20px; top: 3%; width: 58px; }
+      .hero-floral .f2 { right: -20px; top: 5%; width: 60px; }
+      .hero-floral .f3 { left: -20px; bottom: 8%; width: 54px; }
+      .hero-floral .f4 { right: -20px; bottom: 6%; width: 56px; }
+      .hero-floral .hf1 { left: -10px; top: 24%; width: 38px; }
+      .hero-floral .hf2 { right: -10px; top: 34%; width: 40px; }
+      .hero-floral .hf3 { left: -9px; bottom: 27%; width: 36px; }
+      .hero-floral .hf4 { right: -9px; bottom: 23%; width: 35px; }
+      .hero-floral .butterfly { display: block; left: 7%; top: 17%; width: 30px; }
+      .hero-floral .butterfly2 { display: block; right: 7%; bottom: 17%; width: 30px; }
     }
 
     /* ========================================================================
@@ -2401,25 +2451,11 @@
               <input type="text" id="email" name="email" class="form-input" placeholder="07X-XXXXXXX or email" required>
             </div>
 
-            <!-- Attendance Radio -->
+            <!-- Individual Attendance -->
             <div class="form-group">
               <label class="form-label">Will you be attending? <span class="required">*</span></label>
-              <div class="radio-group">
-                <label class="radio-card">
-                  <input type="radio" name="attendance" value="accept" checked required>
-                  <span class="radio-custom"></span>
-                  <span class="radio-text">Joyfully Accepts</span>
-                </label>
-
-                <label class="radio-card">
-                  <input type="radio" name="attendance" value="decline">
-                  <span class="radio-custom"></span>
-                  <span class="radio-text">Regretfully Declines</span>
-                </label>
-              </div>
+              <div id="guest-attendance-list" class="guest-attendance-list"></div>
             </div>
-
-
 
             <!-- Dietary Restrictions -->
             <div class="form-group">
@@ -2455,7 +2491,7 @@
   <div id="rsvp-modal" class="modal-overlay">
     <div class="modal-card text-center">
       <div class="modal-heart">💍</div>
-      <h3 class="modal-title">Bohoma Isthuthi!</h3>
+      <h3 class="modal-title">Thank You!</h3>
       <p id="modal-message" class="modal-text">Your response has been saved with love. We cannot wait to share our special day with you at The Grand Walawwa!</p>
       <button id="close-modal-btn" class="primary-btn">Close</button>
     </div>
@@ -2467,45 +2503,83 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-      // Personalization via URL parameter (e.g. ?name=GuestName)
+      // Personalization via URL parameter (e.g. ?name=Mr.%20Suraj%20%26%20Ms.%20Wameesha)
       const urlParams = new URLSearchParams(window.location.search);
       const guestName = urlParams.get('name') || urlParams.get('guest');
-      
+      const invitedGuests = guestName
+        ? guestName.split('&').map(name => name.trim()).filter(Boolean)
+        : [];
+
       const rsvpFormEl = document.getElementById('rsvp-form');
       const fullNameInputEl = document.getElementById('full-name');
+      const guestAttendanceList = document.getElementById('guest-attendance-list');
 
-      if (guestName) {
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, ch => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+        }[ch]));
+      }
+
+      function buildGuestAttendanceOptions() {
+        if (!guestAttendanceList || !invitedGuests.length) return;
+
+        guestAttendanceList.innerHTML = invitedGuests.map((name, index) => `
+          <div class="guest-attendance-card">
+            <span class="guest-attendance-name">${escapeHtml(name)}</span>
+            <div class="guest-attendance-options">
+              <label class="guest-choice">
+                <input type="radio" name="attendance_${index}" value="accept" ${index === 0 ? 'checked' : ''} required>
+                <span>Joyfully Accepts</span>
+              </label>
+              <label class="guest-choice">
+                <input type="radio" name="attendance_${index}" value="decline">
+                <span>Regretfully Declines</span>
+              </label>
+            </div>
+          </div>
+        `).join('');
+
+        // First option is checked for every invited guest.
+        invitedGuests.forEach((_, index) => {
+          const first = guestAttendanceList.querySelector(`input[name="attendance_${index}"][value="accept"]`);
+          if (first) first.checked = true;
+        });
+      }
+
+      if (guestName && invitedGuests.length) {
         const greetingEl = document.getElementById('guest-greeting-name');
         const containerEl = document.getElementById('guest-greeting-container');
         if (greetingEl && containerEl) {
           greetingEl.textContent = guestName;
           containerEl.style.display = 'block';
         }
-        
+
         if (fullNameInputEl) {
           fullNameInputEl.value = guestName;
           fullNameInputEl.readOnly = true;
           fullNameInputEl.style.pointerEvents = 'none';
           fullNameInputEl.style.backgroundColor = 'rgba(0,0,0,0.02)';
         }
+
+        buildGuestAttendanceOptions();
       } else {
         if (rsvpFormEl) {
-          // Disable form if no name provided to prevent uninvited RSVPs
+          // Disable form if no personalized invitation name is provided.
           const elements = rsvpFormEl.querySelectorAll('input, select, textarea, button');
           elements.forEach(el => {
             el.disabled = true;
             el.style.opacity = '0.6';
             el.style.cursor = 'not-allowed';
           });
-          
+
           if (fullNameInputEl) {
-            fullNameInputEl.placeholder = "Personalized Invitation Required";
+            fullNameInputEl.placeholder = 'Personalized Invitation Required';
           }
-          
+
           const submitBtn = document.getElementById('submit-rsvp-btn');
           if (submitBtn) {
             const btnText = submitBtn.querySelector('.btn-text');
-            if (btnText) btnText.textContent = "INVITATION ONLY";
+            if (btnText) btnText.textContent = 'INVITATION ONLY';
           }
         }
       }
@@ -2771,94 +2845,91 @@
       setInterval(updateCountdown, 1000);
 
       /* ------------------------------------------------------------------------
-         E. RSVP FORM HANDLER & TOGGLES
+         E. RSVP FORM HANDLER & GOOGLE SHEETS
+         Each invited person gets their own attendance choice and row.
          ------------------------------------------------------------------------ */
       const rsvpForm = document.getElementById('rsvp-form');
-      const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
-      const guestsGroup = document.getElementById('guests-selection-group');
       const rsvpModal = document.getElementById('rsvp-modal');
       const closeModalBtn = document.getElementById('close-modal-btn');
       const modalMessage = document.getElementById('modal-message');
-
-      attendanceRadios.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-          if (e.target.value === 'decline') {
-            guestsGroup.style.display = 'none';
-          } else {
-            guestsGroup.style.display = 'flex';
-          }
-        });
-      });
+      const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyfMpvQtSJDonwnoG8fG0yA7OLCq-gPTiykaLGMM96Nz-gpFkgGo_UNmejhvbrQfERB/exec';
 
       if (rsvpForm) {
-        rsvpForm.addEventListener('submit', (e) => {
+        rsvpForm.addEventListener('submit', async (e) => {
           e.preventDefault();
-          
+
           const submitBtn = document.getElementById('submit-rsvp-btn');
-          const btnText = submitBtn.querySelector('.btn-text');
-          const btnSpinner = submitBtn.querySelector('.btn-spinner');
+          const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+          const btnSpinner = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
 
-          btnText.textContent = 'Sending...';
-          btnSpinner.classList.remove('hidden');
-          submitBtn.disabled = true;
+          const fullName = (fullNameInputEl?.value || guestName || '').trim();
+          const contact = (document.getElementById('email')?.value || '').trim();
+          const dietary = (document.getElementById('dietary')?.value || '').trim();
 
-          const attendance = rsvpForm.querySelector('input[name="attendance"]:checked').value;
-          const fullName = document.getElementById('full-name').value;
-          const contact = document.getElementById('email').value;
-          const guestCount = document.getElementById('guest-count') ? document.getElementById('guest-count').value : '1';
-          const dietary = document.getElementById('dietary').value;
+          if (!invitedGuests.length) {
+            alert('Personalized invitation name is required.');
+            return;
+          }
 
-          fetch("https://formsubmit.co/ajax/youcheer.dj@gmail.com", {
-            method: "POST",
-            headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              _subject: `New Wedding RSVP from ${fullName}`,
-              "Full Name": fullName,
-              "Contact Info": contact,
-              "Attendance Status": attendance === 'accept' ? 'Joyfully Accepts' : 'Regretfully Declines',
-              "Guest Count": guestCount,
-              "Notes / Wishes": dietary
-            })
-          })
-          .then(res => res.json())
-          .then(data => {
-            btnText.textContent = 'Submit RSVP';
-            btnSpinner.classList.add('hidden');
-            submitBtn.disabled = false;
-
-            if (attendance === 'accept') {
-              modalMessage.textContent = `Bohoma isthuthi, ${fullName}! We have recorded your attendance. We look forward to celebrating with you at The Grand Walawwa!`;
-            } else {
-              modalMessage.textContent = `Thank you for letting us know, ${fullName}. Warmest wishes from Wameesha & Suraj!`;
-            }
-
-            rsvpModal.classList.add('active');
-            rsvpForm.reset();
-          })
-          .catch(err => {
-            console.log("Form submit fallback: ", err);
-            btnText.textContent = 'Submit RSVP';
-            btnSpinner.classList.add('hidden');
-            submitBtn.disabled = false;
-
-            if (attendance === 'accept') {
-              modalMessage.textContent = `Bohoma isthuthi, ${fullName}! We have recorded your attendance. We look forward to celebrating with you at The Grand Walawwa!`;
-            } else {
-              modalMessage.textContent = `Thank you for letting us know, ${fullName}. Warmest wishes from Wameesha & Suraj!`;
-            }
-
-            rsvpModal.classList.add('active');
-            rsvpForm.reset();
+          const responses = invitedGuests.map((name, index) => {
+            const selected = rsvpForm.querySelector(`input[name="attendance_${index}"]:checked`);
+            return {
+              fullName: name,
+              contact,
+              attendance: selected?.value === 'accept' ? 'Joyfully Accepts' : 'Regretfully Declines',
+              guestCount: '1',
+              dietary
+            };
           });
+
+          if (submitBtn) submitBtn.disabled = true;
+          if (btnText) btnText.textContent = 'Sending...';
+          if (btnSpinner) btnSpinner.classList.remove('hidden');
+
+          try {
+            // text/plain avoids a CORS preflight. Apps Script reads the JSON
+            // from e.postData.contents.
+            await Promise.all(responses.map(data =>
+              fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(data)
+              })
+            ));
+
+            if (btnText) btnText.textContent = 'Submit RSVP';
+            if (btnSpinner) btnSpinner.classList.add('hidden');
+            if (submitBtn) submitBtn.disabled = false;
+
+            const accepted = responses.filter(item => item.attendance === 'Joyfully Accepts').map(item => item.fullName);
+            const declined = responses.filter(item => item.attendance === 'Regretfully Declines').map(item => item.fullName);
+
+            let message = 'Bohoma isthuthi! Your RSVP has been recorded.';
+            if (accepted.length && declined.length) {
+              message = `Thank you! ${accepted.join(', ')} will be joining us, while ${declined.join(', ')} will not be able to attend.`;
+            } else if (accepted.length) {
+              message = `Bohoma isthuthi! ${accepted.join(', ')} will be joining us at The Grand Walawwa.`;
+            } else if (declined.length) {
+              message = `Thank you for letting us know. ${declined.join(', ')} will not be able to attend.`;
+            }
+
+            if (modalMessage) modalMessage.textContent = message;
+            if (rsvpModal) rsvpModal.classList.add('active');
+
+          } catch (err) {
+            console.error('Google Sheets RSVP error:', err);
+            if (btnText) btnText.textContent = 'Submit RSVP';
+            if (btnSpinner) btnSpinner.classList.add('hidden');
+            if (submitBtn) submitBtn.disabled = false;
+            alert('Sorry, the RSVP could not be sent. Please check your internet connection and try again.');
+          }
         });
       }
 
       if (closeModalBtn) {
         closeModalBtn.addEventListener('click', () => {
-          rsvpModal.classList.remove('active');
+          if (rsvpModal) rsvpModal.classList.remove('active');
         });
       }
 
