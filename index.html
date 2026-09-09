@@ -1668,6 +1668,47 @@
       .page-floral .butterfly2 { right: 3%; width: 54px; }
     }
 
+
+    /* Hero floral frame, visible on desktop and mobile */
+    .hero-section > .hero-floral {
+      z-index: 3;
+    }
+    .hero-section > .hero-container {
+      z-index: 2;
+    }
+    .hero-floral .hero-flower {
+      position: absolute;
+      width: clamp(48px, 6.2vw, 88px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 14px rgba(74,38,50,.10));
+      opacity: .96;
+      animation: heroFlowerFloat 7s ease-in-out infinite;
+    }
+    .hero-floral .hf1 { left: -18px; top: 19%; }
+    .hero-floral .hf2 { right: -17px; top: 29%; animation-delay: -1.8s; }
+    .hero-floral .hf3 { left: -15px; bottom: 20%; width: clamp(44px, 5.4vw, 76px); animation-delay: -3.2s; }
+    .hero-floral .hf4 { right: -14px; bottom: 15%; width: clamp(44px, 5.3vw, 74px); animation-delay: -4.6s; }
+    @keyframes heroFlowerFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1.5deg); }
+    }
+    @media (max-width: 700px) {
+      .hero-section {
+        padding: 28px 0 40px;
+      }
+      .hero-floral .f1 { left: -30px; top: 3%; width: 88px; }
+      .hero-floral .f2 { right: -30px; top: 5%; width: 92px; }
+      .hero-floral .f3 { left: -28px; bottom: 8%; width: 78px; }
+      .hero-floral .f4 { right: -28px; bottom: 6%; width: 82px; }
+      .hero-floral .hf1 { left: -14px; top: 24%; width: 54px; }
+      .hero-floral .hf2 { right: -14px; top: 34%; width: 56px; }
+      .hero-floral .hf3 { left: -12px; bottom: 27%; width: 50px; }
+      .hero-floral .hf4 { right: -12px; bottom: 23%; width: 48px; }
+      .hero-floral .butterfly { display: block; left: 7%; top: 17%; width: 42px; }
+      .hero-floral .butterfly2 { display: block; right: 7%; bottom: 17%; width: 42px; }
+    }
+
     /* ========================================================================
        LOCATION SECTION
        ======================================================================== */
@@ -1961,11 +2002,15 @@
        2. HERO SECTION
        ========================================================================== -->
     <section id="hero" class="hero-section">
-      <div class="page-floral" aria-hidden="true">
+      <div class="page-floral hero-floral" aria-hidden="true">
         <img src="assets/left_orange_rose_top.png" class="f1" alt="">
         <img src="assets/right_pink_rose_large.png" class="f2" alt="">
         <img src="assets/left_white_daisy_upper.png" class="f3" alt="">
         <img src="assets/right_yellow_rose_top.png" class="f4" alt="">
+        <img src="assets/left_peach_gerbera_mid.png" class="hero-flower hf1" alt="">
+        <img src="assets/right_pink_gerbera_upper.png" class="hero-flower hf2" alt="">
+        <img src="assets/left_pink_rose_large.png" class="hero-flower hf3" alt="">
+        <img src="assets/right_orange_rose_top.png" class="hero-flower hf4" alt="">
         <img src="assets/butterfly.png" class="butterfly" alt="">
       </div>
       <div class="hero-container reveal-element">
